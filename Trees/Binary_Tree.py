@@ -559,6 +559,7 @@ def tree_mirror_func1(rootNode, mirror):
   mirror.left = tree_mirror_func1(rootNode.right, mirror.left)
 
   return mirror
+  
 '''
 mirror_tree = None
 tree = tree_mirror_func1(root, mirror_tree)
@@ -575,6 +576,8 @@ def mirrorifyTree(rootNode):
   mirrorifyTree(rootNode.right)
 
   rootNode.left, rootNode.right = rootNode.right, rootNode.left
+
+
 '''
 inorder_Morris_Traversal(root)
 print(" ")
@@ -582,5 +585,37 @@ mirrorifyTree(root)
 inorder_Morris_Traversal(root)
 '''
 
+# Vertical Order Traversal using hashing
+def verticalOrderHashing(rootNode, hd, mp):
+
+  if rootNode is None:
+    return
+
+  # store current node data in map mp
+  try:
+    mp[hd].append(rootNode.data)
+  
+  except:
+    mp[hd] = [rootNode.data]
+
+  
+  verticalOrderHashing(rootNode.left, hd-1, mp)
+
+  verticalOrderHashing(rootNode.right, hd+1, mp)
+
+def verticalOrderTraversal(rootNode):
+
+  mp = dict()
+  hd = 0
+  verticalOrderHashing(rootNode, hd, mp)
+
+  for index,  value in enumerate(sorted(mp)):
+    
+    for i in mp[value]:
+      print(i, end = " ")
+    print("")
+
+
+verticalOrderTraversal(root)
 
 
