@@ -616,6 +616,5 @@ def verticalOrderTraversal(rootNode):
     print("")
 
 
-verticalOrderTraversal(root)
 
 
